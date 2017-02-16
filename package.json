@@ -1,0 +1,26 @@
+{
+  "name": "shipit",
+  "version": "0.0.1",
+  "description": "A command line utility for creating release pages in Confluence based on Git commits and Jira tickets",
+  "repository": "https://github.com/adampetrie/shipit",
+  "bin": {
+    "shipit": "./bin/shipit"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Adam Petrie",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "confluence-api": "^1.1.0",
+    "dotenv": "^4.0.0",
+    "github": "^8.2.1",
+    "handlebars": "^4.0.6",
+    "jira": "^0.9.2",
+    "lodash": "^4.17.4",
+    "node-testrail": "0.0.12",
+    "octonode": "^0.7.9",
+    "testrail-api": "^1.0.5"
+  }
+}

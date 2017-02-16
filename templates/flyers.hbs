@@ -1,0 +1,48 @@
+<strong>This page is generated automatically, any manual changes will be overwritten.</strong>
+
+<h3>Pending Changes</h3>
+
+<p>The tickets below have commits on dev that are not on master.</p>
+
+<ac:structured-macro ac:name="jira">
+  <ac:parameter ac:name="columns">key,summary,assignee,status</ac:parameter>
+  <ac:parameter ac:name="jqlQuery">{{ jql }}</ac:parameter>
+  <ac:parameter ac:name="maximumIssues">1000</ac:parameter>
+</ac:structured-macro>
+
+<h3>Commits without ticket numbers</h3>
+
+<p>The commits below could not be tied to a JIRA ticket but will be deployed with the next release.</p>
+
+<table>
+  <tr>
+    <th>Commit</th>
+    <th>Author</th>
+    <th>Message</th>
+  </tr>
+  {{#each commits}}
+    <tr>
+      <td><a href="{{ this.link }}">{{ this.sha }}</a></td>
+      <td>{{ this.author }}</td>
+      <td>{{ this.message }}</td>
+    </tr>
+  {{/each}}
+</table>
+
+<h3>Test Results</h3>
+
+<table>
+  <tr>
+    <th>Passed</th>
+    <td>{{ testData.passed }}</td>
+  </tr>
+  <tr>
+    <th>Failed</th>
+    <td>{{ testData.failed }}</td>
+  </tr>
+  <tr>
+    <th>Percent Pass</th>
+    <td>{{ testData.percentage }}%</td>
+  </tr>
+</table>
+
