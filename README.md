@@ -1,6 +1,6 @@
 # ShipIt
 
-[Alt text](ship-it-squirrel.png?raw=true "Optional Title")
+![ShipIt](ship-it-squirrel.png?raw=true "Optional Title")
 
 ### What is this?
 
