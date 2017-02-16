@@ -1,5 +1,7 @@
 # ShipIt
 
+[Alt text](ship-it-squirrel.png?raw=true "Optional Title")
+
 ### What is this?
 
 ShipIt is a small node script that generates Confluence pages to show you the state of repository at a given time. It connects to GitHub, TestRail and Confluence in order to perform it's magic.
