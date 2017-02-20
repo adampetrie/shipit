@@ -1,6 +1,67 @@
-<strong>This page is generated automatically, any manual changes will be overwritten.</strong>
+<strong>This page is generated automatically, any manual changes will be overwritten when the next build completes.</strong>
 
-<h3>Pending Changes</h3>
+{{#if testData}}
+  <h2>Smoke Test Results</h2>
+  <hr/>
+  <ac:structured-macro ac:name="section">
+    <ac:rich-text-body>
+      <ac:structured-macro ac:name="column">
+        <ac:parameter ac:name="width">50%</ac:parameter>
+        <ac:rich-text-body>
+          <ac:structured-macro ac:name="chart">
+            <ac:parameter ac:name="orientation">vertical</ac:parameter>
+            <ac:parameter ac:name="dataOrientation">vertical</ac:parameter>
+            <ac:parameter ac:name="3D">true</ac:parameter>
+            <ac:rich-text-body>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Tests</td>
+                    <td>Results</td>
+                  </tr>
+                  <tr>
+                    <td>Passing</td>
+                    <td>{{ testData.passed }}</td>
+                  </tr>
+                  <tr>
+                    <td>Failing</td>
+                    <td>{{ testData.failed }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ac:rich-text-body>
+          </ac:structured-macro>
+        </ac:rich-text-body>
+      </ac:structured-macro>
+      <ac:structured-macro ac:name="column">
+        <ac:parameter ac:name="width">50%</ac:parameter>
+        <ac:rich-text-body>
+          <table width="100%">
+            <tbody>
+              <tr>
+                <th>Tests</th>
+                <th>Results</th>
+              </tr>
+              <tr>
+                <td>Passing</td>
+                <td>{{ testData.passed }}</td>
+              </tr>
+              <tr>
+                <td>Failing</td>
+                <td>{{ testData.failed }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ac:rich-text-body>
+      </ac:structured-macro>
+    </ac:rich-text-body>
+  </ac:structured-macro>
+{{/if}}
+
+<h2>Pending Changes</h2>
+<hr/>
+
+<h3>Tickets on Dev Branch</h3>
 
 <p>The tickets below have commits on dev that are not on master.</p>
 
@@ -28,21 +89,3 @@
     </tr>
   {{/each}}
 </table>
-
-<h3>Test Results</h3>
-
-<table>
-  <tr>
-    <th>Passed</th>
-    <td>{{ testData.passed }}</td>
-  </tr>
-  <tr>
-    <th>Failed</th>
-    <td>{{ testData.failed }}</td>
-  </tr>
-  <tr>
-    <th>Percent Pass</th>
-    <td>{{ testData.percentage }}%</td>
-  </tr>
-</table>
-

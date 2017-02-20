@@ -2,10 +2,10 @@ require('dotenv').config()
 
 var cli = require('commander'),
     Promise = require('bluebird');
-    Testrail = require('testrail-api');
     config = require('./config');
     GitHub = require('./lib/github'),
     Confluence = require('./lib/confluence');
+    Testrail = require('./lib/testrail');
     Template = require('./lib/template');
 
 cli
@@ -34,23 +34,30 @@ var confluenceClient = new Confluence({
   baseUrl: 'https://confluence.wishabi.com'
 });
 
-Promise.join(
-  ghClient.commits(cli.repo, cli.base, cli.head),
-  testrailClient.getPlans(repoConfig.testRail.projectId),
-  Template.load('templates/flyers.hbs'),
-  function(data, testPlans, template) {
-    var parsedTemplate = template.parse(
-      data.tickets,
-      data.commits,
-      testPlans[0]
-    );
 
-    confluenceClient.createOrUpdatePage(
-      repoConfig.confluence.space,
-      parsedTemplate
-    );
-  }
-).catch(function(err) {
+ghClient.commits(cli.repo, cli.base, cli.head)
+.then(function(gitData) {
+
+  Promise.join(
+    testrailClient.getActiveTestPlan(repoConfig.testRail.projectId, gitData.headSha),
+    Template.load('templates/flyers.hbs'),
+    function(testData, template) {
+
+      var parsedTemplate = template.parse(
+        gitData.tickets,
+        gitData.commits,
+        testData
+      );
+
+      confluenceClient.createOrUpdatePage(
+        repoConfig.confluence.space,
+        'Flyers Build Status',
+        parsedTemplate
+      );
+    }
+  );
+})
+.catch(function(err) {
   console.log(err);
 });
 
