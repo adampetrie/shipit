@@ -17,6 +17,11 @@ cli
 
 var repoConfig = config[cli.repo];
 
+if(typeof(repoConfig) === 'undefined') {
+  console.log('No configuration found for ' + cli.repo + '. Exiting.');
+  process.exit();
+}
+
 var ghClient = new GitHub({
   user: process.env.GITHUB_USER,
   password: process.env.GITHUB_PASSWORD
